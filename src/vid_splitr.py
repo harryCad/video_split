@@ -16,7 +16,7 @@ else:
     frame_count  = vid_capture.get(cv2.CAP_PROP_FRAME_COUNT) # .get(7)
     frame_width  = int(vid_capture.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(vid_capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    frame_size = (frame_width, frame_height)
+    frame_size   = (frame_width, frame_height)
 
 print('initiating video writer')
 #output = cv2.VideoWriter('Resources/output_video_from_file.avi', cv2.VideoWriter_fourcc('M','J','P','G'), 20, frame_size)
@@ -38,22 +38,6 @@ while(vid_capture.isOpened()):
             break
     else:
         break
-
-# #output = cv2.VideoWriter('Resources/output_video_from_file.avi', cv2.VideoWriter_fourcc('M','J','P','G'), 20, frame_size)
-# output = cv2.VideoWriter('/Users/hcadavid/Documents/projects/video_split/output/temp_frame.mp4'
-#                         , cv2.VideoWriter_fourcc(*'XVID'), frame_persec, frame_size)
-
-# while(vid_capture.isOpened()):
-#     # vid_capture.read() methods returns a tuple, first element is a bool
-#     # and the second is frame
-#     ret, frame = vid_capture.read()
-#     if ret == True:
-#         # Write the frame to the output files
-#         output.write(frame)
-#     else:
-#         print(‘Stream disconnected’)
-#         break
-
 
 vid_capture.release()
 cv2.destroyAllWindows()
