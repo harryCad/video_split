@@ -4,8 +4,8 @@ import cv2
 
 """https://learnopencv.com/reading-and-writing-videos-using-opencv/"""
 
-#input_video = '/Users/hcadavid/Documents/projects/video_split/input/sample-mp4-file.mp4' #3148_56041_1630792151_FishEye.mov'
-output_dir = '/Users/hcadavid/Documents/projects/video_split/VideoClips/'
+#input_video = '/path/to/project/video_split/input/3148_56041_1630792151_FishEye.mov'
+output_dir = '/path/to/project/video_split/VideoClips/'
 
 def video_split(input_video):
     vid_capture = cv2.VideoCapture(input_video)
