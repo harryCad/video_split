@@ -1,13 +1,9 @@
-"""
-HC-20211002
-py file based on following doc:
-https://learnopencv.com/reading-and-writing-videos-using-opencv/
-"""
 import os, sys
 import cv2
 
+"""https://learnopencv.com/reading-and-writing-videos-using-opencv/"""
 input_video = '/Users/hcadavid/Documents/projects/video_split/input/sample-mp4-file.mp4'
-output_video = '/Users/hcadavid/Documents/projects/video_split/VideoClips/temp_frame_2.mp4'
+output_video = '/Users/hcadavid/Documents/projects/video_split/VideoClips/temp_frame_.mp4' #2.mp4'
 
 vid_capture = cv2.VideoCapture(input_video)
 if (vid_capture.isOpened() == True):
@@ -25,21 +21,14 @@ if (vid_capture.isOpened() == True):
     print(f"frame_width = {frame_width}")
     print(f"frame_height = {frame_height}")
     print(f"frame_size = {frame_size}")
-
-    print('initiating video writer')
-    output = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('X','V','I','D'), frame_persec, frame_size)
 else:
     os.__exit(1)
 
-# pos_frame = vid_capture.get(cv2.CAP_PROP_POS_FRAMES)
-# print(pos_frame)
+# print('###initiating video writer###')
+#output = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('X','V','I','D'), frame_persec, frame_size)
 
-print('opening and reading frames')
+print('###opening and reading frames###')
 while(vid_capture.isOpened()):
-    # for frameNum in range (0, frame_count-1):
-    #     if frame >= frame_persec*60:
-    #         pass
-
     # vid_capture.read() methods returns a tuple, first element is a bool
     # and the second is frame
     ret, frame = vid_capture.read()
@@ -47,10 +36,15 @@ while(vid_capture.isOpened()):
         frame_pos = int(vid_capture.get(cv2.CAP_PROP_POS_FRAMES) - 1)
         frame_time_ms = vid_capture.get(cv2.CAP_PROP_POS_MSEC)
         print(f'reading frame: {frame_pos} at the time mark: {frame_time_ms}')
-        if frame_time_ms % 6000 == 0:
+        if frame_time_ms % 60000 == 0:
             print('NEW VIDEO HERE!')
+            print(frame_pos)
+            output_video = f'/Users/hcadavid/Documents/projects/video_split/VideoClips/temp_frame_{frame_pos}.mp4'
+            output = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('X','V','I','D'), frame_persec, frame_size)
+        print(output_video)
         #cv2.imshow('Frame',frame)
-        #output.write(frame)
+        #output = cv2.VideoWriter(output_video, cv2.VideoWriter_fourcc('X','V','I','D'), frame_persec, frame_size)
+        output.write(frame)
         key = cv2.waitKey(50)
         if key == 113:
             break
